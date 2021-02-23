@@ -1,0 +1,15 @@
+[package]
+name = "adrop"
+version = "0.1.0"
+authors = ["CedarHuang <cedar.hxd@gmail.com>"]
+license = "Apache-2.0"
+
+description = "Simple and fast multi-threaded drop."
+readme = "README.md"
+
+repository = "https://github.com/CedarHuang/adrop"
+keywords = ["drop", "simple", "fast"]
+categories = ["rust-patterns", "memory-management"]
+
+[dependencies]
+lazy_static = "1.4"
