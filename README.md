@@ -8,7 +8,7 @@ Add the following dependency to your Cargo manifest...
 
 ```toml
 [dependencies]
-adrop = "0.1"
+adrop = "0.2"
 ```
 
 ## Example
