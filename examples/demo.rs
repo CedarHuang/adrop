@@ -1,19 +1,3 @@
-# adrop
-
-Simple and fast dedicated thread drop.
-
-## Getting Started
-
-Add the following dependency to your Cargo manifest...
-
-```toml
-[dependencies]
-adrop = "0.1"
-```
-
-## Example
-
-```rust
 extern crate adrop;
 
 use adrop::*;
@@ -36,8 +20,3 @@ fn main() {
     // Main ThreadId: ThreadId(1)
     // Dropping HasDrop! ThreadId: ThreadId(2)
 }
-```
-
-## License
-
-- Apache License, Version 2.0, (LICENSE-APACHE or http://www.apache.org/licenses/LICENSE-2.0)
