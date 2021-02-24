@@ -38,6 +38,12 @@ fn main() {
 }
 ```
 
+Or you can use `Adrop` wrapper to realize automatic `adrop`:
+
+```rust
+let _ = Adrop::new(Test {});
+```
+
 ## License
 
 - Apache License, Version 2.0, (LICENSE-APACHE or http://www.apache.org/licenses/LICENSE-2.0)

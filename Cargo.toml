@@ -6,6 +6,7 @@ license = "Apache-2.0"
 
 description = "Simple and fast dedicated thread drop."
 readme = "README.md"
+documentation = "https://docs.rs/adrop"
 
 repository = "https://github.com/CedarHuang/adrop"
 keywords = ["drop", "simple", "fast", "destruct", "destroy"]
