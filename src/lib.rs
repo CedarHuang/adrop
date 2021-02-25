@@ -28,35 +28,18 @@ let _ = Adrop::new(Test {});
 ```
 */
 
-#[macro_use]
-extern crate lazy_static;
-
 use std::{
     mem::ManuallyDrop,
     ops::{Deref, DerefMut},
     sync::{
         mpsc::{channel, Sender},
-        Mutex,
+        Mutex, Once,
     },
     thread::spawn,
 };
 
 type Trash = Box<dyn Send>;
 type TrashSender = Sender<Trash>;
-
-fn run() -> TrashSender {
-    let (tx, rx) = channel();
-    spawn(move || {
-        while let Ok(trash) = rx.recv() {
-            drop(trash);
-        }
-    });
-    tx
-}
-
-lazy_static! {
-    static ref TX: Mutex<TrashSender> = Mutex::new(run());
-}
 
 /// Pass the value to a dedicated thread for destruction.
 ///
@@ -87,10 +70,20 @@ lazy_static! {
 /// Dropping HasDrop! ThreadId: ThreadId(2)
 /// ```
 pub fn adrop<T: Send + 'static>(trash: T) {
-    let _ = TX
-        .lock()
-        .expect("Theoretically will not fail")
-        .send(Box::new(trash));
+    static mut TX: Option<Mutex<TrashSender>> = None;
+    static TX_SET: Once = Once::new();
+    TX_SET.call_once(|| {
+        let (tx, rx) = channel();
+        spawn(move || loop {
+            let _ = rx.recv();
+        });
+        unsafe {
+            TX = Some(Mutex::new(tx));
+        }
+    });
+    unsafe {
+        let _ = TX.as_ref().unwrap().lock().unwrap().send(Box::new(trash));
+    }
 }
 
 /// `Adrop` wrapper can realize automatic `adrop`.

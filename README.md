@@ -2,6 +2,10 @@
 
 Simple and fast dedicated thread drop.
 
+[![Latest version](https://img.shields.io/crates/v/adrop.svg)](https://crates.io/crates/adrop)
+[![Documentation](https://docs.rs/adrop/badge.svg)](https://docs.rs/adrop)
+[![License](https://img.shields.io/crates/l/adrop.svg)](https://github.com/CedarHuang/adrop#license)
+
 ## Getting Started
 
 Add the following dependency to your Cargo manifest...
